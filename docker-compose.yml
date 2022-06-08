@@ -1,0 +1,9 @@
+version: "3"
+services:
+  earnapp:
+    build: .
+    image: earnapp:latest
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./etc:/etc/earnapp
