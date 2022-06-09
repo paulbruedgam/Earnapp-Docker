@@ -1,9 +1,6 @@
 version: "3"
 services:
   earnapp:
-    build: .
-    image: earnapp:latest
-    privileged: true
+    image: ghcr.io/paulbruedgam/earnapp-docker/earnapp:latest
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ./etc:/etc/earnapp
