@@ -28,7 +28,6 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
 
     steps:
       - name: Checkout
@@ -41,7 +40,6 @@ jobs:
 
   prepare:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     needs: lint
     # Map a step output to a job output
     outputs:
@@ -75,7 +73,6 @@ jobs:
   # See also https://docs.docker.com/docker-hub/builds/
   build_and_push:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     needs: [prepare]
 
     steps:
@@ -114,7 +111,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     needs: [prepare, build_and_push]
 
     steps:
