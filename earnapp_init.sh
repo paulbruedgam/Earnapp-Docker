@@ -8,14 +8,15 @@ mkdir -pv /etc/systemd/system
 # Create earnapp dirs based on https://brightdata.com/static/earnapp/install.sh
 mkdir -pv /etc/earnapp
 touch /etc/earnapp/status
-chmod -vR a+wr /etc/earnapp
+chmod -vR u+wr /etc/earnapp
 
 # Download the correct binary
-case "$(uname -m)" in
+OS_ARCH="$(uname -m)"
+case "${OS_ARCH}" in
     "x86_64"|"amd64") file="earnapp-x64-${VERSION}";;
     "armv7l"|"armv6l") file="earnapp-arm7l-${VERSION}";;
     "aarch64"|"arm64") file="earnapp-aarch64-${VERSION}";;
-    *)  echo "${ARCH} not supported"; exit 1;;
+    *)  echo "${OS_ARCH} not supported"; exit 1;;
 esac
 wget -qc "https://cdn.brightdata.com/static/${file}" -O /usr/bin/earnapp
 chmod +x /usr/bin/earnapp

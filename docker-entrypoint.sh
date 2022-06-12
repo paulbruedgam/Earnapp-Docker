@@ -1,16 +1,22 @@
 #!/bin/bash
 set -e
 
-echo "Container's IP address: $(awk 'END{print $1}' /etc/hosts)"
-echo "Public IP address: $(wget -qO- ipinfo.io/ip)"
-
-if [[ "$1" = "earnapp" && "$2" = "run" ]]; then
+if [ "$1" = "earnapp" ] && [ "$2" = "run" ]; then
   for file in /docker-entrypoint.d/*.sh; do
     test -x "${file}" && "${file}"
   done
-  /usr/bin/earnapp autoupgrade &
-  echo "If not registered. Please register this container to earn money."
-  /usr/bin/earnapp register
+
+  PUB_IP="$(wget -qO- ipinfo.io/ip)"
+
+  cat <<REGISTER
+###############################################################################
+Your public IP address: ${PUB_IP}
+You can check the quality of your IP under:
+https://earnapp.com/ip-checker/
+$(/usr/bin/earnapp register)
+###############################################################################
+
+REGISTER
   sleep 15
 fi 
 
