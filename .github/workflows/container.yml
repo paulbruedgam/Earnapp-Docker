@@ -95,8 +95,6 @@ jobs:
           build-args: |
             REPO=${{ github.repository }}
           context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
           file: Dockerfile
           platforms: ${{ env.BUILD_PLATFORM }}
           push: true
