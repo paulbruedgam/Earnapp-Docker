@@ -1,7 +1,10 @@
 # Earnapp for Docker
-Multi-Arch Docker-Image for https://earnapp.com/. The image will be build twice a day.
+Multi-Arch Docker-Image for https://earnapp.com/.
 
 You can donate by using my invite link https://earnapp.com/i/z23pjdm.
+
+## Available Tags
+- **latest** - Built and updated daily
 
 ## Usage
 ### Using Docker

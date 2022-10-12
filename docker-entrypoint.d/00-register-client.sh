@@ -57,7 +57,11 @@ register_device(){
 
   perr "start"
 
+  sleep 2
+
   perr "consent_yes"
+
+  sleep 5
 
   # ToDo check only if status file exists
   if [ ! -d "/etc/earnapp" ]; then
@@ -70,6 +74,8 @@ register_device(){
       perr "dir_existed"
   fi
 
+  sleep 1
+
   case "${OS_ARCH}" in
     "x86_64") perr "arch_x86_64";;
     "amd64") perr "arch_amd64";;
@@ -80,12 +86,17 @@ register_device(){
     *)  perr "arch_other";;
   esac
 
+  sleep 1
+
   perr "fetch_start"
   sleep 5
+
   perr "fetch_finished"
   sleep 5
+
   perr "install_run"
   sleep 5
+
   earnapp finish_install
   perr "install_finished"
 }
